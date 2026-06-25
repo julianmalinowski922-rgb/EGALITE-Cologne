@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ÉGALITÉ Friseursalon – Köln Nippes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --noir: #0C0C0C;
+      --champagne: #E8D5B0;
+      --rose: #C4957A;
+      --cream: #F7F2EC;
+      --sage: #8A9E8C;
+      --mid: #1A1A1A;
+      --warm-white: #FAF8F4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--noir);
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(12,12,12,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,213,176,0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--champagne);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(247,242,236,0.6);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--champagne); }
+
+    .nav-cta {
+      background: var(--rose);
+      color: var(--noir) !important;
+      padding: 0.6rem 1.4rem !important;
+      border-radius: 2px;
+      font-weight: 500 !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 4rem 4rem;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      right: -6vw;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18rem, 30vw, 38rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,213,176,0.07);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--champagne);
+      margin-bottom: 0.3em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--cream);
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      color: rgba(247,242,236,0.5);
+      margin: 1.8rem 0 2.8rem;
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--rose);
+      color: var(--noir);
+      padding: 1rem 2.4rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 2px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--champagne); transform: translateY(-2px); }
+
+    .btn-ghost {
+      display: inline-block;
+      color: var(--champagne);
+      padding: 1rem 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(232,213,176,0.3);
+      border-radius: 2px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .btn-ghost:hover { border-color: var(--champagne); color: var(--cream); }
+
+    .hero-rating {
+      position: absolute;
+      bottom: 3rem;
+      right: 4rem;
+      text-align: right;
+    }
+
+    .hero-rating .score {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--champagne);
+      line-height: 1;
+    }
+
+    .hero-rating .stars {
+      color: var(--rose);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-rating .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(247,242,236,0.4);
+      margin-top: 0.3rem;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(232,213,176,0.12);
+      border-bottom: 1px solid rgba(232,213,176,0.12);
+      padding: 1rem 0;
+      background: rgba(196,149,122,0.06);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(232,213,176,0.45);
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .marquee-dot {
+      color: var(--rose);
+      margin: 0 1rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 4rem; }
+
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--champagne);
+      line-height: 1.15;
+    }
+
+    /* ── ÜBER UNS ── */
+    .about {
+      background: var(--warm-white);
+      color: var(--noir);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about .section-eyebrow { color: var(--rose); }
+    .about .section-title { color: var(--noir); }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: #3a3a3a;
+      margin-top: 1.5rem;
+    }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--noir);
+      line-height: 1.4;
+      border-left: 3px solid var(--rose);
+      padding-left: 2rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-box {
+      border-top: 1px solid rgba(12,12,12,0.12);
+      padding-top: 1.2rem;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--noir);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 0.3rem;
+    }
+
+    /* ── LEISTUNGEN ── */
+    .services {
+      background: var(--noir);
+      position: relative;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(232,213,176,0.1);
+    }
+
+    .service-card {
+      background: var(--mid);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--rose);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .service-card:hover { background: #222; }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--champagne);
+      margin-bottom: 0.7rem;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(247,242,236,0.45);
+    }
+
+    /* ── BEWERTUNGEN ── */
+    .reviews {
+      background: #111;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .review-card {
+      background: rgba(232,213,176,0.05);
+      border: 1px solid rgba(232,213,176,0.1);
+      padding: 2.2rem;
+      border-radius: 3px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .review-card:hover {
+      border-color: rgba(196,149,122,0.4);
+      transform: translateY(-4px);
+    }
+
+    .review-stars { color: var(--rose); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(247,242,236,0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .review-author {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    .reviews-bg-text {
+      position: absolute;
+      bottom: -5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 20rem;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,213,176,0.04);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── ÖFFNUNGSZEITEN & KONTAKT ── */
+    .info {
+      background: var(--warm-white);
+      color: var(--noir);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .info .section-eyebrow { color: var(--rose); }
+    .info .section-title { color: var(--noir); margin-bottom: 2.5rem; }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(12,12,12,0.08);
+    }
+
+    .hours-table td {
+      padding: 0.85rem 0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--noir);
+      font-weight: 500;
+    }
+
+    .hours-table .closed {
+      color: #bbb;
+    }
+
+    .hours-table .today td {
+      color: var(--rose);
+      font-weight: 500;
+    }
+
+    .contact-block {
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--noir);
+      color: var(--champagne);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-value {
+      font-size: 1rem;
+      color: var(--noir);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .contact-value:hover { color: var(--rose); }
+
+    .map-placeholder {
+      margin-top: 2rem;
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid rgba(12,12,12,0.1);
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--rose);
+      padding: 5rem 4rem;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--noir);
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-banner p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: rgba(12,12,12,0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-dark {
+      display: inline-block;
+      background: var(--noir);
+      color: var(--champagne);
+      padding: 1.1rem 2.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 2px;
+      transition: background 0.3s;
+    }
+
+    .btn-dark:hover { background: #222; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #070707;
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(232,213,176,0.08);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      color: rgba(232,213,176,0.5);
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(247,242,236,0.25);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(247,242,236,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--champagne); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero-rating { right: 1.5rem; bottom: 2rem; }
+      .about, .info { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      footer { flex-direction: column; text-align: center; padding: 2.5rem 1.5rem; }
+      .cta-banner { padding: 4rem 1.5rem; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">ÉGALITÉ</a>
+    <ul class="nav-links">
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#bewertungen">Bewertungen</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="tel:022116919229" class="nav-cta">Termin buchen</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-watermark">É</div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Friseursalon · Köln Nippes</p>
+      <h1 class="hero-title">
+        Dein Haar.<br/>
+        <em>Dein Auftritt.</em>
+      </h1>
+      <p class="hero-sub">
+        Wir verbinden Handwerk mit Leidenschaft — für ein Friseurerlebnis, das du nicht so schnell vergisst.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:022116919229" class="btn-primary">Jetzt anrufen</a>
+        <a href="#leistungen" class="btn-ghost">Unsere Leistungen</a>
+      </div>
+    </div>
+    <div class="hero-rating">
+      <div class="score">4,9</div>
+      <div class="stars">★★★★★</div>
+      <div class="label">126 Google-Bewertungen</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Haarschnitt<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Colorationen<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Highlights<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Hair Glossing<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Balayage<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Styling<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Damen & Herren<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Haarschnitt<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Colorationen<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Highlights<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Hair Glossing<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Balayage<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Styling<span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Damen & Herren<span class="marquee-dot">✦</span></span>
+    </div>
+  </div>
+
+  <!-- ÜBER UNS -->
+  <section class="about" id="about">
+    <div class="reveal">
+      <p class="section-eyebrow">Über uns</p>
+      <h2 class="section-title">Schönheit beginnt mit echtem Handwerk.</h2>
+      <p class="about-text">
+        Im Friseurhaus ÉGALITÉ bieten wir ein umfassendes Spektrum an hochwertigen Dienstleistungen für Damen und Herren jeden Alters. Unser professionelles Team aus talentierten Stylistinnen und Stylisten steht bereit, um dir ein individuelles und unvergessliches Erlebnis zu bieten – vom klassischen Schnitt bis zur aufwendigen Coloration.
+      </p>
+      <p class="about-text" style="margin-top: 1rem;">
+        Wir nehmen uns Zeit für dich, beraten ehrlich und arbeiten mit Leidenschaft. Bei uns bist du keine Kundennummer – du bist Gast.
+      </p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-number">4,9</div>
+          <div class="stat-label">Google Bewertung</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">126+</div>
+          <div class="stat-label">Zufriedene Kund:innen</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Expert:innen im Team</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Leidenschaft</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <blockquote class="about-quote">
+        „Man merkt sofort, wie viel Mühe und Können dahintersteckt. Die Atmosphäre war super angenehm und ich habe mich die ganze Zeit wohlgefühlt."
+      </blockquote>
+      <p style="margin-top: 1.2rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose);">— Mirzeta Chiara, Kundin</p>
+    </div>
+  </section>
+
+  <!-- LEISTUNGEN -->
+  <section class="services" id="leistungen">
+    <div class="services-header reveal">
+      <div>
+        <p class="section-eyebrow">Was wir tun</p>
+        <h2 class="section-title">Unsere Leistungen</h2>
+      </div>
+      <a href="tel:022116919229" class="btn-primary">Termin vereinbaren</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">✂️</div>
+        <h3 class="service-name">Haarschnitt</h3>
+        <p class="service-desc">Präzise Schnitte für Damen und Herren – auf deine Gesichtsform, deinen Typ und deinen Stil abgestimmt.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎨</div>
+        <h3 class="service-name">Coloration</h3>
+        <p class="service-desc">Von dezenter Auffrischung bis hin zur kompletten Farbveränderung – wir bringen deine Wunschfarbe zum Leben.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">✨</div>
+        <h3 class="service-name">Highlights & Balayage</h3>
+        <p class="service-desc">Natürlich, strahlend, individuell. Wir setzen Akzente, die dein Haar lebendig und dreidimensional wirken lassen.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💫</div>
+        <h3 class="service-name">Hair Glossing</h3>
+        <p class="service-desc">Intensiver Glanz und lebendige Farbe durch professionelle Gloss-Behandlungen – sichtbares Ergebnis ab dem ersten Mal.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌿</div>
+        <h3 class="service-name">Haarpflege & Kur</h3>
+        <p class="service-desc">Intensive Pflegebehandlungen, die dein Haar von innen heraus stärken, regenerieren und zum Strahlen bringen.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💈</div>
+        <h3 class="service-name">Styling & Beratung</h3>
+        <p class="service-desc">Wir beraten dich ehrlich und nehmen uns Zeit, damit du mit dem perfekten Look nach Hause gehst.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEWERTUNGEN -->
+  <section class="reviews" id="bewertungen">
+    <div class="reviews-header reveal">
+      <p class="section-eyebrow">Was unsere Kund:innen sagen</p>
+      <h2 class="section-title" style="color: var(--champagne);">Echte Worte.<br/>Echte Ergebnisse.</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Ich war heute beim Friseur und bin wirklich mega zufrieden! Meine Haare wurden gefärbt, geschnitten, Highlights gemacht und zusätzlich ein Glossing — das Ergebnis ist einfach wunderschön geworden."</p>
+        <p class="review-author">Mirzeta Chiara</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Sie hat sofort verstanden, was ich meinte. Ich war danach sprachlos – sie hat einfach ein Wunder aus meinen Haaren gemacht! Sie sehen jetzt viel gesünder und voller aus."</p>
+        <p class="review-author">Amelija Shabanova</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„War heute bei Enza zum Färben und Schneiden und bin mega glücklich mit dem Ergebnis! Sie nimmt sich viel Zeit, berät ehrlich und man merkt wirklich, dass es ihre Passion ist."</p>
+        <p class="review-author">Sassi Bra</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Top Service, saubere Arbeit und eine richtig angenehme Atmosphäre. Besonders Enza und Ali – beide extrem freundlich, nehmen sich Zeit und sorgen dafür, dass man sich sofort wohlfühlt."</p>
+        <p class="review-author">Philipp Lukas M.</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Super freundliches Team und schnelle Termine – bin immer sehr zufrieden!"</p>
+        <p class="review-author">Moritz W.</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">„Tolles Ergebnis, bin sehr zufrieden! Absolute Empfehlung für jeden, der einen Friseursalon sucht, dem Qualität wirklich wichtig ist."</p>
+        <p class="review-author">Daniela Cardone</p>
+      </div>
+    </div>
+    <div class="reviews-bg-text">ÉGALITÉ</div>
+  </section>
+
+  <!-- KONTAKT & ÖFFNUNGSZEITEN -->
+  <section class="info" id="kontakt">
+    <div class="reveal">
+      <p class="section-eyebrow">Öffnungszeiten</p>
+      <h2 class="section-title">Wann wir für dich da sind</h2>
+      <table class="hours-table">
+        <tr><td>Montag</td><td class="closed">Geschlossen</td></tr>
+        <tr class="today"><td>Dienstag</td><td>10:00 – 19:00</td></tr>
+        <tr><td>Mittwoch</td><td>10:00 – 19:00</td></tr>
+        <tr><td>Donnerstag</td><td>10:00 – 19:00</td></tr>
+        <tr><td>Freitag</td><td>09:00 – 18:30</td></tr>
+        <tr><td>Samstag</td><td>09:00 – 17:00</td></tr>
+        <tr><td>Sonntag</td><td class="closed">Geschlossen</td></tr>
+      </table>
+    </div>
+    <div class="reveal">
+      <p class="section-eyebrow">Kontakt & Anfahrt</p>
+      <h2 class="section-title">Wir freuen uns auf dich</h2>
+      <div class="contact-block">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Adresse</div>
+            <a href="https://maps.google.com/?q=Neusser+Str.+304,+50733+Köln" target="_blank" class="contact-value">Neusser Str. 304, 50733 Köln-Nippes</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Telefon</div>
+            <a href="tel:022116919229" class="contact-value">0221 16919229</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⭐</div>
+          <div>
+            <div class="contact-label">Google Bewertung</div>
+            <span class="contact-value">4,9 / 5 · 126 Bewertungen</span>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.4!2d6.9502!3d50.9668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bf26a0b0e4c7d5%3A0x5b0d9c5a8e2f1234!2sNeusser+Str.+304%2C+50733+K%C3%B6ln!5e0!3m2!1sde!2sde!4v1700000000000"
+          width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h2>Bereit für deinen neuen Look?</h2>
+    <p>Ruf uns an oder komm einfach vorbei – wir freuen uns auf dich.</p>
+    <a href="tel:022116919229" class="btn-dark">Jetzt Termin buchen →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">ÉGALITÉ</div>
+    <p class="footer-copy">© 2025 ÉGALITÉ Friseursalon · Neusser Str. 304 · 50733 Köln</p>
+    <ul class="footer-links">
+      <li><a href="#">Impressum</a></li>
+      <li><a href="#">Datenschutz</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Highlight today's opening hours
+    const days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+    const todayName = days[new Date().getDay()];
+    document.querySelectorAll('.hours-table tr').forEach(row => {
+      if (row.cells[0] && row.cells[0].textContent.trim() === todayName) {
+        row.classList.add('today');
+      } else {
+        row.classList.remove('today');
+      }
+    });
+  </script>
+</body>
+</html>
